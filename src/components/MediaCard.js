@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function MediaCard({title, poster, date}) {
+export default function MediaCard({title, poster, date, productType}) {
   return (
     <Card sx={{ width: 345, height:'object-fit' }}>
       <CardMedia
@@ -16,7 +16,7 @@ export default function MediaCard({title, poster, date}) {
       />
       <CardContent>
       <Typography variant="body2" color="text.secondary">
-          Movie
+          {productType === 'tv'? 'Serie TV' : 'Movie'}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
           {title}

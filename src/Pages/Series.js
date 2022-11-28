@@ -5,12 +5,14 @@ import Pagination from '@mui/material/Pagination';
 import useMovies from '../hooks/useMovies';
 import ChipGenres from '../components/ChipGenres';
 
+const productType='tv';
+
 function Series(props) {
 
     const [pageSelected, setPageSelected] = useState(1);
     const [genresURL, setGenresURL] = useState('');
 
-    const [movies, numberOfPage] = useMovies(pageSelected, genresURL, 'tv');
+    const [movies, numberOfPage] = useMovies(pageSelected, genresURL, productType);
  
     const changePage = (e, nextElement) => {
         setPageSelected(nextElement);
@@ -23,7 +25,7 @@ function Series(props) {
                 {movies?.map(e => {
                     return (
                         <div key={e.id}>
-                            <MediaCard title={e.title} poster={img_300 + e.poster_path} date={e.release_date} />
+                            <MediaCard productType={productType} title={e.title} poster={img_300 + e.poster_path} date={e.release_date} />
                         </div>
                     )
                 })}
