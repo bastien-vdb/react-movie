@@ -3,46 +3,21 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import useGenre from '../hooks/useGenre';
 
-function ChipGenres({ setGenresURL }) {
+function ChipGenres({ setGenresURL, setPageSelected }) {
 
-    const [chipNotSelected, setChipNotSelected] = useState();
-    const [chipSelected, setChipSelected] = useState([]);
-    const { genres } = useGenre();
+    const { chipSelected, chipNotSelected, handleAdd, handleDelete, url } = useGenre();
 
-    useEffect(() => {
-        setChipNotSelected(() => genres);
-    }, [genres]);
-
-    const handleAdd = (chipAdded) => {
-
-        const chipSelectedCopy = [...chipSelected, chipAdded];
-        setChipSelected(() => chipSelectedCopy);
-
-        const chipNotSelectedCopy = chipNotSelected.filter(e => e !== chipAdded);
-        setChipNotSelected(() => chipNotSelectedCopy);
-
-        const urlGenres = generateUrl(chipSelectedCopy);
-        setGenresURL(() => urlGenres)
+    const chipAdd=(e)=>{
+        handleAdd(e);
+    }
+    const chipDelete=(e)=>{
+        handleDelete(e);
     }
 
-    const handleDelete = (chipDeleted) => {
-        const chipSelectedCopy = chipSelected.filter(e => e !== chipDeleted);
-        setChipSelected(() => chipSelectedCopy);
-
-        const chipNotSelectedCopy = [...chipNotSelected, chipDeleted];
-        setChipNotSelected(() => chipNotSelectedCopy);
-
-        const urlGenres = generateUrl(chipSelectedCopy);
-        setGenresURL(() => urlGenres)
-    }
-
-    const generateUrl = (chipSelectedCopy) => {
-        if (chipSelectedCopy.length >= 1) {
-            const chipSelectedCopy_IDs = chipSelectedCopy.map(e => e.id);
-            return chipSelectedCopy_IDs.reduce((arr, curr) => arr + ',' + curr);
-        }
-        else return '';
-    }
+    useEffect(()=>{
+        setGenresURL(url);
+        setPageSelected(1);
+    },[url]);
 
     return (
         <div style={{ margin: '1em' }}>
@@ -50,12 +25,12 @@ function ChipGenres({ setGenresURL }) {
                 <div>
                     {chipNotSelected?.map(e => (
                         <span key={e.id} style={{ margin: '2px' }}>
-                            <Chip label={e.name} variant='outlined' onClick={() => handleAdd(e)} />
+                            <Chip label={e.name} variant='outlined' onClick={() => chipAdd(e)} />
                         </span>
                     ))}
                     {chipSelected?.map(e => (
                         <span key={e.id} style={{ margin: '2px' }}>
-                            <Chip label={e.name} variant='primary' onDelete={() => handleDelete(e)} />
+                            <Chip label={e.name} variant='primary' onDelete={() => chipDelete(e)} />
                         </span>
                     ))}
                 </div>

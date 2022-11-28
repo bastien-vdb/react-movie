@@ -12,9 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { purple } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
 
-const pages = ['Movies', 'Series', 'Search'];
+const pages = [
+  { link: '/movies', name: 'Movies' },
+  { link: '/series', name: 'Series' },
+  { link: '/search', name: 'Search' }
+];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -89,9 +94,13 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <Link style={{textDecoration: 'none'}} to={page.link}>
+                <MenuItem key={page.link} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page.name}
+                  </Typography>
                 </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -116,13 +125,15 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <Link style={{textDecoration: 'none'}} to={page.link}>
               <Button
-                key={page}
+                key={page.link}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
+              </Link>
             ))}
           </Box>
 

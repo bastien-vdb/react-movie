@@ -5,12 +5,12 @@ import Pagination from '@mui/material/Pagination';
 import useMovies from '../hooks/useMovies';
 import ChipGenres from '../components/ChipGenres';
 
-function Movies(props) {
+function Series(props) {
 
     const [pageSelected, setPageSelected] = useState(1);
     const [genresURL, setGenresURL] = useState('');
 
-    const [movies, numberOfPage] = useMovies(pageSelected, genresURL, 'movie');
+    const [movies, numberOfPage] = useMovies(pageSelected, genresURL, 'tv');
  
     const changePage = (e, nextElement) => {
         setPageSelected(nextElement);
@@ -31,9 +31,8 @@ function Movies(props) {
             <div className='pagination'>
                 <Pagination page={pageSelected} onChange={changePage} count={numberOfPage} />
             </div>
-
         </>
     );
 }
 
-export default Movies;
+export default Series;
