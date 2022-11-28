@@ -18,10 +18,6 @@ function Series(props) {
         setPageSelected(nextElement);
     }
 
-    useEffect(()=>{
-        console.log(movies)
-    },[movies])
-
     return (
         <>
         <ChipGenres setGenresURL={setGenresURL} setPageSelected={setPageSelected}/>

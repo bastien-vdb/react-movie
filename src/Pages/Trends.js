@@ -20,7 +20,7 @@ function Trends(props) {
                 {content?.map(e => {
                     return (
                         <div key={e.id}>
-                            <MediaCard productType={e.media_type} title={e.title} poster={img_300 + e.poster_path} date={e.release_date} overview={e.overview} id={e.id} />
+                            <MediaCard productType={e.media_type} title={e.media_type === 'movie'? e.title : e.name} poster={img_300 + e.poster_path} date={e.media_type === 'movie'? e.release_date : e.first_air_date} overview={e.overview} id={e.id} />
                         </div>
                     )
                 })}
