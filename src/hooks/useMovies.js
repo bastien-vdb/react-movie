@@ -10,6 +10,7 @@ function useMovies(pageSelected, genresURL, type) {
         // console.log(getMoviesJson.results);
         setMovies(getMoviesJson.results);
         setNumberOfPage(getMoviesJson.total_pages);
+        console.log(getMoviesJson);
     }
 
     useEffect(() => {

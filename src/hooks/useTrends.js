@@ -12,6 +12,7 @@ function useTrends(pageSelected) {
         const resultJson = await result.json();
         setContent(resultJson.results);
         setNumberOfPage(resultJson.total_pages);
+        console.log(resultJson);
     };
 
     useEffect(() => {

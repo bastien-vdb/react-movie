@@ -57,7 +57,7 @@ function Search(props) {
             <div className='movieGrid'>
                 {isMatchData ? resultData?.map(e => {
                     return (
-                        <div key={e.id}><MediaCard productType={productType} title={e.title} poster={img_300 + e.poster_path} date={e.release_date} /></div>
+                        <div key={e.id}><MediaCard productType={productType} title={e.title} poster={img_300 + e.poster_path} date={e.release_date} overview={e.overview} id={e.id}/></div>
                     )
                 })
                     :
