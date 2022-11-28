@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CarouselModal from './CarouselModal';
 
 function ModalTrailer({ setOpen, open, title, poster, date, productType, overview, id }) {
 
@@ -54,7 +55,10 @@ function ModalTrailer({ setOpen, open, title, poster, date, productType, overvie
                         {title} ({date})
                     </Typography>
 
-                    <img src={poster} alt={title} />
+                    
+                    <img src={poster} alt={title} /> 
+                    {/* <CarouselModal productType={productType} id={id}/> */}
+                    
 
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {overview}
